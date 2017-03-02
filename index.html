@@ -6,14 +6,65 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
 	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>	
+    <style>
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+
 </head>
+
 <body style="margin: 0px; border: 0px">
 
-<div style = "position:fixed; top:0; right:0; z-index:2;">
-世界这么大，我想去看看
-</div>
-
 <div id="mapid" style="width: 100%; height: 100%; position:absolute; z-index:1;"></div>
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>丑大鸭的午觉</p>
+    <img src="./assets/swan.jpeg" style="width: 100%; height: 100%;"/>
+  </div>
+
+</div>
 
 <script>
 
@@ -25,8 +76,8 @@
 		id: 'mapbox.streets'
 	}).addTo(mymap);
 
-	L.marker([31.32138, 121.40373]).addTo(mymap)
-		.bindPopup("<b>Hello world!</b><br /> 这是旅程开始的地方").openPopup();
+	L.marker([31.31867, 121.38897]).addTo(mymap)
+		.bindPopup(`<div id="myBtn"><b>Hello world!</b><br /> 这是旅程开始的地方</div>`).openPopup();
 
 	var popup = L.popup();
 
@@ -38,6 +89,34 @@
 	}
 
 	mymap.on('click', onMapClick);
+
+
+/******************************** for the modal ****************************/
+    // Get the modal
+    var modal = document.getElementById('myModal');
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 
 </script>
 
