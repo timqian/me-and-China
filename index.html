@@ -81,7 +81,11 @@
 		id: 'mapbox.streets'
 	}).addTo(mymap);
 
-	L.marker([31.31867, 121.38897]).addTo(mymap).on('click', markerOnClick);
+	L.marker([31.31867, 121.38897])
+        .addTo(mymap)
+        .on('click', markerOnClick)
+        .bindPopup(`<div onclick="markerOnClick()"><b>上海大学</b><br /> 这是旅程开始的地方</div>`)
+        .openPopup();;
 
 	var popup = L.popup();
 
