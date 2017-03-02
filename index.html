@@ -11,7 +11,7 @@
         .modal {
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
+            z-index: 2; /* Sit on top */
             padding-top: 100px; /* Location of the box */
             left: 0;
             top: 0;
@@ -60,7 +60,8 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-    <p>丑大鸭的午觉</p>
+    <h2 id=""><b>上海大学</b> (这是旅程开始的地方</h2>
+    <p >丑大鸭的午觉</p>
     <img src="./assets/swan.jpeg" style="width: 100%; height: 100%;"/>
     <p>图书馆</p>
     <img src="./assets/lib.jpeg" style="width: 100%; height: 100%;"/>
@@ -80,8 +81,7 @@
 		id: 'mapbox.streets'
 	}).addTo(mymap);
 
-	L.marker([31.31867, 121.38897]).addTo(mymap)
-		.bindPopup(`<div id="myBtn"><b>上海大学</b><br /> 这是旅程开始的地方</div>`).openPopup();
+	L.marker([31.31867, 121.38897]).addTo(mymap).on('click', markerOnClick);
 
 	var popup = L.popup();
 
@@ -99,14 +99,12 @@
     // Get the modal
     var modal = document.getElementById('myModal');
 
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
     // When the user clicks the button, open the modal 
-    btn.onclick = function() {
+    function markerOnClick() {
         modal.style.display = "block";
     }
 
